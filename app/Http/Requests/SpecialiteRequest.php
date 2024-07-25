@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LivreRequest extends FormRequest
+class SpecialiteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,11 +19,10 @@ class LivreRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public static function rules(): array
+    public function rules(): array
     {
         return [
-            "titre"=>['required','min:8','unique:livres'],
-            "auter"
+            "nom_spec" => "required"
         ];
     }
 }

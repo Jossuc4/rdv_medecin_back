@@ -1,7 +1,22 @@
+POST  http://localhost:8000/api/specialite/add
+Content-Type: application/json
+
+{
+  "name":"Jossuca"
+}
 
 POST  http://localhost:8000/api/test
 Content-Type: application/json
 
 {
   "nom":"Jossuca"
-}    
+}
+
+POST http://localhost:8000/api/medecin/insert
+Content-Type: application/json
+
+{
+  "nom_medecin":"Tiantsoa Hortencia",
+  "contact_medecin":"+261322738665",
+  ""
+}

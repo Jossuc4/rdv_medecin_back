@@ -17,4 +17,5 @@ class MedecinModel extends Model
 
     protected $table = 'medecin';
     protected $primaryKey = 'id_medecin';
+    public $timestamps = false;
 }

@@ -16,4 +16,19 @@ class FicheModel extends Model
      * @var string
      */
     protected $table = 'fiche';
+    public $timestamps = false;
+
+    protected $fillable = [
+        "nom_patient",
+        "prenom_patient",
+        "sexe_patient",
+        "adresse",
+        "phone",
+        "mail",
+        "date_naissance",
+        "situation",
+        "groupe_sang",
+        "antecedent",
+        "deces"
+    ];
 }
