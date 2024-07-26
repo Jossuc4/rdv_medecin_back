@@ -76,7 +76,7 @@ return new class extends Migration
         Schema::create('compte_patient', function (Blueprint $table) {
             $table->id('id_cpatient');
             $table->unsignedBigInteger('id_fiche')->unique();
-            $table->foreign('id_fiche')->references('id_fiche')->on('fiche')->onDelete('cascade');
+            $table->foreign('id_fiche')->references('id')->on('fiche')->onDelete('cascade');
             $table->string('mdp');
         });
 

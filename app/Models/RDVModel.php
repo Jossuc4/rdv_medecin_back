@@ -15,7 +15,6 @@ class RDVModel extends Model
         'id_rdv',
         'id_medecin',
         'id_fiche',
-        'id_fiche',
         'raison',
         'date_rdv',
         'type_id'

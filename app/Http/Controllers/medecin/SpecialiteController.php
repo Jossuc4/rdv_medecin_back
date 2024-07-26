@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Medecin;
 
 use App\Models\SpecialiteModel;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class SpecialiteController extends Controller

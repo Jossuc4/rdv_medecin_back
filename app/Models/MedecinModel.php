@@ -18,4 +18,12 @@ class MedecinModel extends Model
     protected $table = 'medecin';
     protected $primaryKey = 'id_medecin';
     public $timestamps = false;
+
+    protected $fillable = [
+        'id_medecin',
+        'nom_medecin',
+        'contact_medecin',
+        'idspec',
+        'mdp'
+    ];
 }
