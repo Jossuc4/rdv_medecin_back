@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FicheModel;
 use App\Models\RDVModel;
 use Illuminate\Http\Request;
 
 class RDVController extends Controller
 {
+
+    private function defineGenre($sexe)
+    {
+        return ($sexe === "M") ? [
+            "subject" => "monsieur",
+            "adj" => "Cher"
+        ] : [
+            "subject" => "madame",
+            "adj" => "Chère"
+        ];
+    }
     public function index()
     {
         return RDVModel::all();
@@ -14,7 +26,7 @@ class RDVController extends Controller
 
     public function create(Request $request)
     {
-        RDVModel::create(
+        $created = RDVModel::create(
             [
                 'id_medecin' => $request->input('id_medecin'),
                 'id_fiche' => $request->input('id_fiche'),
@@ -23,6 +35,8 @@ class RDVController extends Controller
                 'type_id' => $request->input('type_id')
             ]
         );
+
+        return $created;
     }
 
     public function report(Request $request)
@@ -40,5 +54,23 @@ class RDVController extends Controller
         );
 
         return $rdv;
+    }
+
+    public function cancel(Request $request)
+    {
+        $rdv = RDVModel::find($request->input("id_rdv"));
+        $patient = FicheModel::find($rdv["id_fiche"]);
+        $dest_mail = $patient["mail"];
+
+        $message = join(" ", $this->defineGenre($patient["sexe"])) . $patient["nom_patient"];
+
+        $rdv->delete();
+
+        $mail_sent = mail($dest_mail, "Annulation de rendez-vous", $message);
+
+        return [
+            "sent" => $mail_sent,
+            "message" => $message
+        ];
     }
 }

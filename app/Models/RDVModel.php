@@ -10,6 +10,7 @@ class RDVModel extends Model
     use HasFactory;
 
     protected $table = "rdv";
+    protected $primaryKey = "id_rdv";
 
     protected $fillable = [
         'id_rdv',

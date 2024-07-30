@@ -58,7 +58,7 @@ class FicheController extends Controller
         return FicheModel::all();
     }
 
-    public function update(Request $request)
+    public function modif(Request $request)
     {
         $row = FicheModel::find($request->post('id'));
 

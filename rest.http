@@ -5,6 +5,10 @@ Content-Type: application/json
   "name":"Jossuca"
 }
 
+###
+GET http://localhost:8000/api/specialite
+
+############## TEST
 POST  http://localhost:8000/api/test
 Content-Type: application/json
 
@@ -12,11 +16,146 @@ Content-Type: application/json
   "nom":"Jossuca"
 }
 
-POST http://localhost:8000/api/medecin/insert
+##############
+POST http://localhost:8000/api/medecin/new
+Content-Type: application/json
+
+{
+  "nom_medecin":"Rolls Royce",
+  "contact_medecin":"+26132222222",
+  "idspec":2
+}
+
+##############
+POST http://localhost:8000/api/medecin/modif
+Content-Type: application/json
+
+{
+  "id_medecin":8,
+  "nom_medecin":"Luc Hervé",
+  "contact_medecin":"+26133333333",
+  "idspec":6
+}
+
+##############
+POST http://localhost:8000/api/medecin/delete
+Content-Type: application/json
+
+{
+  "id_medecin":8
+}
+
+##############
+POST http://localhost:8000/api/medecin/login
 Content-Type: application/json
 
 {
   "nom_medecin":"Tiantsoa Hortencia",
   "contact_medecin":"+261322738665",
-  ""
+  "idspec":4
+}
+
+##################
+GET http://localhost:8000/api/fiche
+Content-Type: application/json
+
+##################
+POST http://localhost:8000/api/fiche/create
+Content-Type: application/json
+
+{
+  "nom_patient": "Larry",
+  "prenom_patient": "Jossuca",
+  "sexe_patient": "M",
+  "adresse": "Soatsihadino",
+  "phone": "+261343895765",
+  "mail": "larryjossuc4@gmail.com",
+  "date_naissance": "07_11_2003",
+  "situation": 2,
+  "groupe_sang": "O+",
+  "antecedent": null,
+  "deces": 0
+}
+
+###
+PUT http://localhost:8000/api/fiche/modif
+Content-Type: application/json
+
+{
+  "id":4,
+  "nom_patient": "Larry",
+  "prenom_patient": "Jossuca",
+  "sexe_patient": "M",
+  "adresse": "Soatsihadino",
+  "phone": "+261343895765",
+  "mail": "larryjossuc4@gmail.com",
+  "date_naissance": "07_11_2002",
+  "situation": 2,
+  "groupe_sang": "O+",
+  "antecedent": null,
+  "deces": 0
+}
+###
+POST http://localhost:8000/api/fiche/delete
+Content-Type: application/json
+
+{
+  "id":2
+}
+
+##################
+GET http://localhost:8000/api/rdvtype
+Content-Type: application/json
+
+##################
+POST http://localhost:8000/api/rdvtype/new
+Content-Type: application/json
+
+{
+  "type_rdv":"contrôle"
+}
+
+###
+POST http://localhost:8000/api/rdvtype/delete
+Content-Type: application/json
+
+{
+  "id_rdv_type":2
+}
+
+##################
+GET http://localhost:8000/api/rdv
+Content-Type: application/json
+
+###
+POST http://localhost:8000/api/rdv/new
+Content-Type: application/json
+
+{
+  "id_medecin":1,
+  "id_fiche":3,
+  "raison":"Maladie d'amour",
+  "date_rdv": "07_08_2024 08:30",
+  "type_id":1
+}
+
+###
+PUT http://localhost:8000/api/rdv/report
+Content-Type: application/json
+
+{
+  "id_rdv":1,
+  "id_medecin":1,
+  "id_fiche":4,
+  "raison":"Maladie de merde",
+  "date_rdv": "09_08_2024 10:10",
+  "type_id":1
+}
+
+###
+POST http://localhost:8000/api/rdv/cancel
+Content-Type: application/json
+
+{
+  "id_rdv":1
 }
