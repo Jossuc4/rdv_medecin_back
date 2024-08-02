@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Mail\NotifMailController;
+use App\Mail\NotifMail;
 use App\Models\FicheModel;
 use App\Models\RDVModel;
 use Illuminate\Http\Request;
@@ -41,19 +43,38 @@ class RDVController extends Controller
 
     public function report(Request $request)
     {
+        $subject = "Report de la date de rendez_vous";
+
         $rdv = RDVModel::find($request->input('id_rdv'));
 
-        $rdv->update(
-            [
-                'id_medecin' => $request->input('id_medecin'),
-                'id_fiche' => $request->input('id_fiche'),
-                'raison' => $request->input('raison'),
-                'date_rdv' => $request->input('date_rdv'),
-                'type_id' => $request->input('type_id')
-            ]
-        );
+        if (!is_null($rdv)) {
+            $rdv->update(
+                [
+                    'id_medecin' => $request->input('id_medecin'),
+                    'id_fiche' => $request->input('id_fiche'),
+                    'raison' => $request->input('raison'),
+                    'date_rdv' => $request->input('date_rdv'),
+                    'type_id' => $request->input('type_id')
+                ]
+            );
 
-        return $rdv;
+            $patient = FicheModel::find($request->input('id_fiche'));
+
+            $nouveau_date = str_replace(" ", " à ", $request->input('date_rdv'));
+
+            $details = [
+                "title" => "Report de la date de rendez-vous au " . $request->input('date_rdv'),
+                "body" => "Le report de la date de rendez-vous au " . $nouveau_date . "est confirmé."
+            ];
+
+            // NotifMailController::send($subject, $details, $patient);
+
+            return $rdv;
+        } else {
+            return [
+                "error" => "instance null"
+            ];
+        }
     }
 
     public function cancel(Request $request)

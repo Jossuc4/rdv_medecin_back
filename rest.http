@@ -143,14 +143,14 @@ Content-Type: application/json
 PUT http://localhost:8000/api/rdv/report
 Content-Type: application/json
 
-{
-  "id_rdv":1,
-  "id_medecin":1,
-  "id_fiche":4,
-  "raison":"Maladie de merde",
-  "date_rdv": "09_08_2024 10:10",
-  "type_id":1
-}
+# {
+#   "id_rdv":3,
+#   "id_medecin":1,
+#   "id_fiche":4,
+#   "raison":"Maladie de merde",
+#   "date_rdv": "09_08_2024 10:10",
+#   "type_id":1
+# }
 
 ###
 POST http://localhost:8000/api/rdv/cancel
